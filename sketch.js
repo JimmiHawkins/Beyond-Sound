@@ -29,8 +29,10 @@ function setup() {
   arduinoCom.on("data", gotData); //gather the data from Arduino and process it so it is usable in p5js. The gotData is a function further down in the code that contains the logistics of how the data is processed and received
 
   userStartAudio(); //this function bypasses the user audio restriction when opening the programme in fullscreen. Chrome has a limitation where it only plays audio at the user's input request. This code automatically allows the programme to pick up audio
+  
 
-  createCanvas(windowWidth, windowHeight); //creating the canvas to the resolution of any monitor that the code is run on
+
+  createCanvas(1900, 1060); //creating the canvas to the resolution of any monitor that the code is run on
 
   frameRate(60); //increased the framerate to 60fps which increases the number of times the draw loop is repeated per second. This makes the visual smoother compared to 30fps but also increases the data output to the Arduino LEDS/vibration modules. I noticed that a higher fps creates a smoother and more seamless effect with both modules.
 
@@ -62,7 +64,15 @@ function gotData() {
   
 }
 
+function mousePressed() {
+//when mouse is pressed go into full screen
+    let full = fullscreen(); 
+    fullscreen(!full); 
+}
+
 function draw() {
+  
+  
   textAlign(CENTER); // Set text pivot point to the centre of the element
   
   imageMode(CENTER); // Set the image pivot point to the centre of the element
@@ -153,6 +163,7 @@ function draw() {
 
     shape = square;
     fade = 1000;
+    
   }
 
   if (buttonState == 8) {
@@ -300,6 +311,7 @@ function draw() {
   }
 
   if (buttonState == 7) {
+    fill(0)
     text("MONOTONE LIGHT", width / 2, height - height + 250);
   }
 
