@@ -105,15 +105,15 @@ function draw() {
 
   waveformAudio.amp(0.3); //the dot amp allows control of the outputted volume. Changing the waveform audio to a lower or higher number changes the sensitivity of the waveform as it is based on sound
   
-  computerAudio.amp(10);  //I have done the same with the computer audio which affects the vibe output value which controls the vibration intensity
+  computerAudio.amp(2);  //I have done the same with the computer audio which affects the vibe output value which controls the vibration intensity
 
   let vol = computerAudio.getLevel() * 5; //the computer audio level is assigned to the vol variable and the value is multiplied so the values have a higher range
   
   let waveform = waveformData.analyze(4096); //the waveform audio level is assigned to the waveform variable. The value in brackets is the bins of the spectrum. This changes the range of frequencies the waveform displays. It has been changed to 4096 as this value allows for a decent amount of smoothness while having the desired range
 
-  let vibeOutput = map(vol, 0, 1, 60, 249); //A map function is assigned to the vol variable. This allows for the computer sound output to be converted into a range between two numbers, in this case, 60 and 249. I have chosen these numbers because the max output value of an Arduino module (in this case vibration motors) is 255. Also through experimenting, I have found around 60 is the minimum level the user can feel the vibration so this is to prevent points where no sensation is felt. This is assigned to the variable "vibeOutput"
+  let vibeOutput = map(vol, 0, 1, 64.5, 249); //A map function is assigned to the vol variable. This allows for the computer sound output to be converted into a range between two numbers, in this case, 60 and 249. I have chosen these numbers because the max output value of an Arduino module (in this case vibration motors) is 255. Also through experimenting, I have found around 60 is the minimum level the user can feel the vibration so this is to prevent points where no sensation is felt. This is assigned to the variable "vibeOutput"
 
-  vibeOutput = constrain(vibeOutput, 60, 249); // I am constraining the vibeOutput variable to 60-249 so the value does not pass this range, then letting it equal vibeOutput again so the data can be used..
+  vibeOutput = constrain(vibeOutput, 64.5, 249); // I am constraining the vibeOutput variable to 60-249 so the value does not pass this range, then letting it equal vibeOutput again so the data can be used..
 
   arduinoCom.write(vibeOutput); //.write allows data to be sent through the serial port and to the Arduino where said values can be used within the Arduino IDE to control the vibration modules, as well as if statements to do certain things when a value is within a certain range
 
@@ -327,3 +327,4 @@ function draw() {
     text("PIXEL ", width / 2, height - height + 250);
   }
 }
+
