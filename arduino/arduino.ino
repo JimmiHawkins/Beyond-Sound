@@ -16,8 +16,8 @@ int vibeLed5 = A4;
 //these variables are setting the minimum sound level for the next finger on the glove to start. These values will be used to ccreate if statments 
 
 int finger1Min = 65;
-int finger2Min = 90;
-int finger3Min = 130;
+int finger2Min = 100;
+int finger3Min = 135;
 int finger4Min = 180;
 int finger5Min = 220;
 int maxVibe = 250; // The max value for the vibration modules is 255
